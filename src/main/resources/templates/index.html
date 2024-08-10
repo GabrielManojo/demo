@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Records</title>
+    <!-- Corrected Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4">The following are the savings records...</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Customer Number</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Customer Deposit</th>
+            <th scope="col">Number of Years</th>
+            <th scope="col">Savings Type</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${listCustomers}">
+            <td th:text="${customer.customerNumber}"></td>
+            <td th:text="${customer.customerName}"></td>
+            <td th:text="${customer.initialDeposit}"></td>
+            <td th:text="${customer.years}"></td>
+            <td th:text="${customer.savingsType}"></td>
+            <td>
+                <a th:href="@{/showFormForUpdate/{id}(id=${customer.id})}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{/deleteCustomer/{id}(id=${customer.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                <a th:href="@{/projectedInvestment/{id}(id=${customer.id})}" class="btn btn-info btn-sm">Projected Investment</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/showNewCustomerForm" class="btn btn-success">Add</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

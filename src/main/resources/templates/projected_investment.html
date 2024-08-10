@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projected Investment</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Projected table of customer number <span th:text="${customer.customerNumber}"></span></h2>
+  <h4>Name: <span th:text="${customer.customerName}"></span></h4>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Year</th>
+      <th>Starting Amount</th>
+      <th>Interest</th>
+      <th>Ending Balance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="projection : ${projections}">
+      <td th:text="${projection.year}"></td>
+      <td th:text="${projection.startingAmount}"></td>
+      <td th:text="${projection.interest}"></td>
+      <td th:text="${projection.endingBalance}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <form th:action="@{/submitInvestment}" method="post">
+    <button type="submit" class="btn btn-secondary">Submit</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
